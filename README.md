@@ -20,19 +20,19 @@ Teste de habilidade.
 
 <div id="tecnologias"></div>
 
-- [Jest](https://jestjs.io/)
-- [JWT](https://jwt.io/)
+- [Jest](https://jestjs.io/) - UnitTest
+- [JWT](https://jwt.io/) - JSON WEB TOKEN
 - [Axios](https://github.com/axios/axios) - HTTP Client
 - [ESlint](https://eslint.org/) - Linter
 - [Prettier](https://prettier.io/) - Code Formatter
-- [typescript](https://www.typescriptlang.org/)
+- [typescript](https://www.typescriptlang.org/) - Super Javascript
+- [swagger](https://swagger.io/) - Documentation
 
 ### Recurso extras do projeto
 
 <div id="recursos"></div>
 
-- [] Testes unitatios e 100% de coverage nos services.
-- [] Arquitetura de multiprocessos.
+- [x] Arquitetura de multiprocessos.
 
 ### Arquitetura de multiprocessos
 
@@ -45,6 +45,8 @@ A API está configurada para funcionar com passa em processos Primary e Workers,
 <div id="instalacao"></div>
 
 **Installing and run at docker**
+
+**_Uma imagem docker foi disponibilizada no docker hub, acessando: https://hub.docker.com/repository/docker/colgate13/egadcep_**
 
 ```bash
 git clone ...
@@ -80,7 +82,7 @@ npm install
 
 npm run build
 
-node dist/server.js
+pm2 start ecosystem.config.js
 
 > Primary process started
 > Server Primary running in process - 1981
@@ -96,13 +98,38 @@ Server started on port 5000
 
 <div id="doc"></div>
 
-Um arquivo .har está disponível na pasta files, podendo ser importado para o Insomnia. Caso a aplicação esteja online só é preciso acessar a rota /docs para ter acesso a documentação.
+Um arquivo .har está disponível na pasta **files**, podendo ser importado para o Insomnia. Caso a aplicação esteja online só é preciso acessar a rota /docs para ter acesso a documentação.
 
 Use o comando curl abaixo para testar ou utilize o importando-o no Insomnia ou Postman
+
+**_Criando TOKEN_**
+
+```curl
+curl --request POST \
+  --url http://localhost:5000/cep/create/token \
+  --header 'Content-Type: application/json' \
+  --data '{
+	"email": "email@gmail.com"
+}'
+```
+
+With token do..
 
 ```curl
 curl --request POST \
   --url http://localhost:5000/cep \
+  --header 'Authorization: Bearer ${{TOKEN}}\
+  --data '{
+	"cep": "77410100"
+}'
+```
+
+**Exemplo real, utilizando token existente**
+
+```curl
+curl --request POST \
+  --url http://localhost:5000/cep \
+  --header 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImdhYnJlaWxiYXJyb3MxM0BnbWFpbC5jb20iLCJpYXQiOjE2NTMzNDkyMTksImV4cCI6MTY1NTk0MTIxOSwic3ViIjoiZ2FicmVpbGJhcnJvczEzQGdtYWlsLmNvbSJ9.2PRXsa0z9_E8dL2A_h5bFKwV6uK3pE19X4N4xI1ytTI' \
   --header 'Content-Type: application/json' \
   --data '{
 	"cep": "77410100"
