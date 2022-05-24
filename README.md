@@ -1,4 +1,4 @@
-<h1 align="center">Bank-fluffly-frontend</h1>
+<h1 align="center">Eadcep</h1>
 
 <p align="center">
   <a href="#about">Sobre este projeto</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
