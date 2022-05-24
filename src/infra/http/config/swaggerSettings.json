@@ -1,0 +1,49 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Egadcep API",
+    "version": "1.0.0",
+    "description": "Egadcep API",
+    "license": {
+      "name": "Licensed Under MIT",
+      "url": "https://spdx.org/licenses/MIT.html"
+    },
+    "contact": {
+      "name": "EgadCep",
+      "url": "egadcep.com"
+    }
+  },
+  "servers": [
+    {
+      "url": "http://localhost:5000",
+      "description": "Development server"
+    }
+  ],
+  "basePath": "/",
+  "swagger": "3.0",
+  "paths": {
+    "/docs": {
+      "get": {
+        "tags": [
+          "docs"
+        ],
+        "summary": "Get documentation",
+        "description": "Get documentation",
+        "operationId": "getDocs",
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "schema": {
+              "$ref": "#/definitions/Docs"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {},
+  "responses": {},
+  "parameters": {},
+  "securityDefinitions": {},
+  "tags": []
+}

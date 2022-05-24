@@ -1,0 +1,18 @@
+{
+  "material-icon-theme.folders.associations": {
+    "infra": "server",
+    "http": "context",
+    "repositories": "template",
+    "viacep": "api",
+    "process": "controller",
+    "fetch": "api",
+    "axios": "lib"
+  },
+  "eslint.workingDirectories": [
+    "./src"
+  ],
+  "cSpell.words": [
+    "Viacep",
+    "viacep"
+  ],
+}
