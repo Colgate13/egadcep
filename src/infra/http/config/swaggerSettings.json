@@ -3,7 +3,7 @@
   "info": {
     "title": "Egadcep API",
     "version": "1.0.0",
-    "description": "Egadcep API",
+    "description": "Egadcep API - Para utilizar a API crie um TOKEN utilizando a rota '/cep/create/token'",
     "license": {
       "name": "Licensed Under MIT",
       "url": "https://spdx.org/licenses/MIT.html"
@@ -32,9 +32,128 @@
         "operationId": "getDocs",
         "responses": {
           "200": {
+            "description": "Successful operation"
+          }
+        }
+      }
+    },
+    "/cep": {
+      "post": {
+        "tags": [
+          "cep"
+        ],
+        "summary": "Get CEP",
+        "description": "Get CEP",
+        "operationId": "getCep",
+        "parameters": [
+          {
+            "name": "cep",
+            "in": "json",
+            "description": "CEP",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "headers": {
+          "Accept": {
+            "Authorization": "Bearer ${{TOKEN}}",
+            "type": "string",
+            "description": "Accept header",
+            "default": "application/json",
+            "Content-Type": "application/json"
+          }
+        },
+        "responses": {
+          "200": {
             "description": "Successful operation",
-            "schema": {
-              "$ref": "#/definitions/Docs"
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "cep": {
+                      "type": "string"
+                    },
+                    "logradouro": {
+                      "type": "string"
+                    },
+                    "complemento": {
+                      "type": "string"
+                    },
+                    "bairro": {
+                      "type": "string"
+                    },
+                    "localidade": {
+                      "type": "string"
+                    },
+                    "uf": {
+                      "type": "string"
+                    },
+                    "ibge": {
+                      "type": "string"
+                    },
+                    "gia": {
+                      "type": "string"
+                    },
+                    "ddd": {
+                      "type": "string"
+                    },
+                    "siafi": {
+                      "type": "string"
+                    },
+                    "cache": {
+                      "type": "boolean"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/cep/create/token": {
+      "post": {
+        "tags": [
+          "token"
+        ],
+        "summary": "Create a token for use in the API",
+        "description": "Informe seu email para criar um token de acesso",
+        "operationId": "getToken",
+        "parameters": [
+          {
+            "name": "email",
+            "in": "json",
+            "description": "email",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "headers": {
+          "Accept": {
+            "type": "string",
+            "description": "Accept header",
+            "default": "application/json",
+            "Content-Type": "application/json"
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "token": {
+                      "type": "string"
+                    },
+                    "expiresIn": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
             }
           }
         }
